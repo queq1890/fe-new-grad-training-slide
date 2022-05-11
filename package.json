@@ -4,7 +4,11 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "fusuma start",
+    "start:prod": "fusuma start-prod",
+    "build": "fusuma build",
+    "deploy": "npm run build && fusuma deploy",
+    "pdf": "npm run build && fusuma pdf"
   },
   "repository": {
     "type": "git",
@@ -16,7 +20,8 @@
     "url": "https://github.com/queq1890/fe-new-grad-training-slide/issues"
   },
   "homepage": "https://github.com/queq1890/fe-new-grad-training-slide#readme",
-  "devDependencies": {
+  "dependencies": {
+    "@fusuma/task-pdf": "^2.8.4",
     "fusuma": "^2.8.4"
   }
 }
