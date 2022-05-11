@@ -1,0 +1,22 @@
+{
+  "name": "fe-new-grad-training-slide",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/queq1890/fe-new-grad-training-slide.git"
+  },
+  "author": "YujiMatsumoto",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/queq1890/fe-new-grad-training-slide/issues"
+  },
+  "homepage": "https://github.com/queq1890/fe-new-grad-training-slide#readme",
+  "devDependencies": {
+    "fusuma": "^2.8.4"
+  }
+}
