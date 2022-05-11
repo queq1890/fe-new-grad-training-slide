@@ -1,0 +1,62 @@
+# フロントエンドライブラリの変遷
+
+---
+
+## jQuery の天下
+
+- jQuery が広く使われていた
+- (TODO リストのコード例)
+- JavaScript にはない便利な文法があった
+- ブラウザ間の JavaScript 実装の差分を jQuery で吸収できた
+
+---
+
+## どんどんリッチになる Web フロントエンドの UI
+
+- jQuery で表現するのが辛くなってきた
+  - Web フロントエンド専用のライブラリ、というわけではないので、実装の方針・設計などはエンジニアに委ねられる
+  - 現場によって実装方針がバラバラ
+    - jQuery にオレオレ便利関数を足して使う
+    - jQuery のバージョンがまちまち
+  - UI の部品（コンポーネント）の再利用性
+    - ユーザーの見た目上は同じ部品でも、繰り返し似たような記述を、HTML/CSS/JavaScript で繰り返し書かないといけなかった
+    - 例: ボタン
+      - ボタン用の CSS を書く
+      - ボタンを表示したい箇所で、ボタンの HTML を書く
+      - ボタンを押した時に実行したい処理を JavaScript に書く
+- CSS の干渉・依存・再利用性
+  - JavaScript で起きていたような module の問題
+  - セレクターがぶつかってしまう
+  - 依存関係・読み込み順
+  - :thinking_face: 他の CSS に影響を与えない、特定の scope に閉じた CSS がほしい...
+  - :thinking_face: HTML/JavaScript/CSS を意味のあるまとまり毎に定義して、再利用できればよいのに...
+
+---
+
+## React.js (宣言的 UI) の登場
+
+- JavaScript first
+  - JSX を返却する JavaScript の class / function
+  - 元々は class component しかなかったが、後から function component が実装 && hooks API という function component に logic を書くための API が登場したことにより、現在ではほぼ全ての component を function component に書くようになっている
+  - JavaScript のロジックも HTML も同じ.jsx ファイルに書ける
+- CSS は scoped にする
+  - 例: CSS module
+    - Webpack の設定で CSS を JavaScript から import できるようにする
+    - Webpack (正確には Webpack の loader) が build 時に selector を component 内に閉じるような名前に自動変換
+    - component の内部にしか影響を与えない CSS 定義ができる
+- 例: CSS in JS
+  - CSS を JavaScript 内で書いてしまおう、という考え方
+  - styled-component / emotion が有名
+  - (jQuery のコードを React で書きなおしたものを載せる)
+
+---
+
+## 現在の Web フロントエンドライブラリのメタ
+
+- React.js が筆頭
+- 次点で Vue.js が続く
+  - JSX が扱えるようになったり、React.js のような function component の記法が入ったりなど、ライブラリ同士がお互いの API に影響を与えあっている
+- React.js を使う場合は、React.js のフレームワークである Next.js を採用するのがデファクトになりつつある
+  - 開発元である Vercel の体制が安泰
+    - 大量の資金調達
+    - JavaScript / TypeScript の OSS 開発者を無限に採用
