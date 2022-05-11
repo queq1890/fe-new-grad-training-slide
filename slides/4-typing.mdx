@@ -7,13 +7,16 @@
 <!-- block-start: grid -->
 <!-- block-start: column -->
 
+```tsx
+const str: string = 'this is string value';
+const num: number = 12345;
+const bool: boolean = true;
+```
+
 <!-- block-end -->
 <!-- block-start: column, left -->
 
 - string / number / boolean などの、データの種類
-- 例:
-  - true は boolean 型
-  - 1 は number 型
 - 動的型付け言語と静的型付け言語がある
   - 動的: 変数・関数・クラスの定義時に、型を明示的に宣言しない
     - Ruby/JavaScript など
@@ -27,21 +30,11 @@
 
 ## :thinking_face: 型って何？
 
-<!-- block-start: grid -->
-<!-- block-start: column -->
-
-<!-- block-end -->
-<!-- block-start: column, left -->
-
-- Web フロントエンドのリッチ化・Node.js でサーバーサイド JavaScript の考えかたが登場したことにより、JavaScript アプリケーションは大規模化・複雑化していった
-  - JavaScript の動的型はあまり信用できなかった
-    - 1 == ‘1’
-    - true = ‘1’
-    - undefined == null
-  - :thinking_face: 既存の JavaScript のコードに少しずつ足していける、静的型つけのような型検査の仕組みがほしい...!
-
-<!-- block-end -->
-<!-- block-end -->
+- JavaScript アプリケーションは大規模化・複雑化していった
+  - アプリケーションの規模に対して、言語仕様がつらい
+    - (ECMAScript による使用統一もまだ)
+    - (module の仕組みは当時まだ登場していない)
+    - 型検査の仕組みがほしい...!
 
 ---
 
@@ -50,11 +43,25 @@
 <!-- block-start: grid -->
 <!-- block-start: column -->
 
+```ts
+const user = {
+  firstName: 'Angela',
+  lastName: 'Davis',
+  role: 'Professor',
+};
+
+console.log(user.name);
+// => Property 'name' does not exist on type '{ firstName: string; lastName: string; role: string; }'.
+```
+
+https://www.typescriptlang.org/
+
 <!-- block-end -->
 <!-- block-start: column, left -->
 
 - JavaScript の文法はそのままに、型を追加した JavaScript の superset
 - build 時に JavaScript に変換する
+- ECMAScript 2015 が策定される前に、import/export などの文法を先取って実装
 - どのぐらい型の検査を厳しくするかは config で設定できる
   - 0 ⇒ 1 なので厳しい config にしたり
   - JavaScript で数年開発した project に後から TypeScript を入れるのでゆるい config にしたり

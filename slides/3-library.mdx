@@ -7,12 +7,14 @@
 <!-- block-start: grid -->
 <!-- block-start: column -->
 
+![jQuery](https://openjsf.org/wp-content/uploads/sites/84/2019/10/jquery-logo-vertical_large_square.png)
+
 <!-- block-end -->
 <!-- block-start: column, left -->
 
 - jQuery が広く使われていた
 - (TODO リストのコード例)
-- JavaScript にはない便利な文法があった
+- 当時の JavaScript にはない便利な文法があった
 - ブラウザ間の JavaScript 実装の差分を jQuery で吸収できた
 
 <!-- block-end -->
@@ -22,56 +24,15 @@
 
 ## どんどんリッチになる Web フロントエンドの UI
 
-<!-- block-start: grid -->
-<!-- block-start: column -->
-
-<!-- block-end -->
-<!-- block-start: column, left -->
-
-- UI の部品（コンポーネント）の再利用性
-  - ユーザーの見た目上は同じ部品でも、繰り返し似たような記述を、HTML/CSS/JavaScript で繰り返し書かないといけなかった
-  - 例: ボタン
-    - ボタン用の CSS を書く
-    - ボタンを表示したい箇所で、ボタンの HTML を書く
-    - ボタンを押した時に実行したい処理を JavaScript に書く
-
-<!-- block-end -->
-<!-- block-end -->
-
----
-
-## どんどんリッチになる Web フロントエンドの UI
-
-<!-- block-start: grid -->
-<!-- block-start: column -->
-
-<!-- block-end -->
-<!-- block-start: column, left -->
-
 - jQuery で表現するのが辛くなってきた
   - Web フロントエンド専用のライブラリ、というわけではないので、実装の方針・設計などはエンジニアに委ねられる
   - 現場によって実装方針がバラバラ
     - jQuery にオレオレ便利関数を足して使う
     - jQuery のバージョンがまちまち
-  - UI の部品（コンポーネント）の再利用性
-    - ユーザーの見た目上は同じ部品でも、繰り返し似たような記述を、HTML/CSS/JavaScript で繰り返し書かないといけなかった
-    - 例: ボタン
-      - ボタン用の CSS を書く
-      - ボタンを表示したい箇所で、ボタンの HTML を書く
-      - ボタンを押した時に実行したい処理を JavaScript に書く
-
-<!-- block-end -->
-<!-- block-end -->
 
 ---
 
-## どんどんリッチになる Web フロントエンドの UI
-
-<!-- block-start: grid -->
-<!-- block-start: column -->
-
-<!-- block-end -->
-<!-- block-start: column, left -->
+## CSS の再利用性の問題
 
 - CSS の干渉・依存・再利用性
   - JavaScript で起きていたような module の問題
@@ -79,6 +40,33 @@
   - 依存関係・読み込み順
   - :thinking_face: 他の CSS に影響を与えない、特定の scope に閉じた CSS がほしい...
   - :thinking_face: HTML/JavaScript/CSS を意味のあるまとまり毎に定義して、再利用できればよいのに...
+
+---
+
+## React.js (宣言的 UI) の登場
+
+<!-- block-start: grid -->
+<!-- block-start: column -->
+
+```jsx
+const Button = (props) => {
+  const helloWorld = () => {
+    console.log(helloWorld);
+  };
+
+  return <button>{props.text}</button>;
+};
+```
+
+https://reactjs.org/
+
+<!-- block-end -->
+<!-- block-start: column, left -->
+
+- JavaScript first
+  - JSX を返却する JavaScript の class / function
+  - 元々は class component しかなかったが、後から function component が実装 && hooks API という function component に logic を書くための API が登場したことにより、現在ではほぼ全ての component を function component に書くようになっている
+  - JavaScript のロジックも HTML も同じ.jsx ファイルに書ける
 
 <!-- block-end -->
 <!-- block-end -->
@@ -90,13 +78,29 @@
 <!-- block-start: grid -->
 <!-- block-start: column -->
 
+```jsx
+// CSS in JS
+const Container = styled('div')`
+  display: flex;
+  width: 100%;
+  height: 100%;
+`;
+
+const StyledButton = styled('button')`
+  color: red;
+  width: 100px;
+`;
+
+const App = () => (
+  <Container>
+    <StyledButton>Helo</StyledButton>
+  </Container>
+);
+```
+
 <!-- block-end -->
 <!-- block-start: column, left -->
 
-- JavaScript first
-  - JSX を返却する JavaScript の class / function
-  - 元々は class component しかなかったが、後から function component が実装 && hooks API という function component に logic を書くための API が登場したことにより、現在ではほぼ全ての component を function component に書くようになっている
-  - JavaScript のロジックも HTML も同じ.jsx ファイルに書ける
 - CSS は scoped にする
   - 例: CSS module
     - Webpack の設定で CSS を JavaScript から import できるようにする
@@ -117,12 +121,13 @@
 <!-- block-start: grid -->
 <!-- block-start: column -->
 
+![state](../images/state-of-javascript.png)
+https://2021.stateofjs.com/en-US/libraries/front-end-frameworks
+
 <!-- block-end -->
 <!-- block-start: column, left -->
 
 - React.js が筆頭
-- 次点で Vue.js が続く
-  - JSX が扱えるようになったり、React.js のような function component の記法が入ったりなど、ライブラリ同士がお互いの API に影響を与えあっている
 - React.js を使う場合は、React.js のフレームワークである Next.js を採用するのがデファクトになりつつある
   - 開発元である Vercel の体制が安泰
     - 大量の資金調達
