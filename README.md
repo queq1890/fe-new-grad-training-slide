@@ -6,4 +6,4 @@
 
 ## デプロイ済みのスライド
 
-https://github.com/queq1890/fe-new-grad-training-slide#:~:text=fe%2Dnew%2Dgrad%2Dtraining%2Dslide.vercel.app
+https://fe-new-grad-training-slide.vercel.app
