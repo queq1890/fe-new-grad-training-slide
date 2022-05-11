@@ -1,7 +1,6 @@
 # fe-new-grad-training-slide
 
 
-<iframe src=“https://fe-new-grad-training-slide.vercel.app/” style=“width:100%;height:100%;“></iframe>
 
 ## このリポジトリについて
 
