@@ -1,0 +1,126 @@
+# React.js コンポーネント定義の例
+
+---
+
+## シンプルな HTML をコンポーネントにする
+
+```tsx
+<form>
+  <label>
+    検索:
+    <input type="text"></input>
+  </label>
+  <button type="submit">検索</button>
+</form>
+```
+
+- キーワードを入力して検索するフォームのマークアップ例
+- React.js コンポーネント化して、検索ボタンを押した時に、入力された値を API に送る処理を実装してみる
+
+---
+
+## 関数コンポーネントに書き換える
+
+```tsx
+const Form = () => {
+  return (
+    <form>
+      <label>
+        検索:
+        <input type="text"></input>
+      </label>
+      <button type="submit">検索</button>
+    </form>
+  );
+};
+```
+
+- Q.input に入力された値を、コンポーネント内で状態として保持するには？
+
+---
+
+## 関数コンポーネントに状態を追加する
+
+```tsx
+import { useState } from "react";
+
+const Form = () => {
+  const [keyword, setKeyword] = useState("");
+
+  const onChange = (event) => {
+    setKeyword(event.target.value);
+  };
+
+  return (
+    <form>
+      <label>
+        検索:
+        <input type="text" onChange={onChange} value={keyword}></input>
+      </label>
+      <button type="submit">検索</button>
+    </form>
+  );
+};
+```
+
+- `useState()` で状態(`keyword`)と状態の更新関数(`setKeyword()`)を定義
+- input の`value` に`keyword` を渡す
+- input の`onChange` event が発火した際に実行される関数を定義し、内部で`setKeyword()` を実行
+
+<br />
+
+- Q.「検索」ボタンをクリックした時に、検索 API にリクエストを送るには？
+
+---
+
+## submit 処理を実行する
+
+```tsx
+import { useState } from "react";
+
+const Form = () => {
+  const [keyword, setKeyword] = useState("");
+  const [result, setResult] = useState();
+
+  const onChange = (event) => {
+    setKeyword(event.target.value);
+  };
+
+  const onSubmit = async (event) => {
+    event.preventDefault();
+
+    const response = await fetch(`path/to/api`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        keyword: keyword,
+      }),
+    });
+
+    setResult(response.json());
+  };
+
+  return (
+    <form>
+      <label>
+        検索:
+        <input type="text" onChange={onChange} value={keyword}></input>
+      </label>
+      <button type="submit" onClick={onClick}>
+        検索
+      </button>
+    </form>
+  );
+};
+```
+
+- button の `onClick` event が発火した際に実行される関数を定義
+  - 内部で検索 API に`keyword` の値を POST する
+  - 新しい state を定義して response を保存
+
+---
+
+※今回の研修では使用しませんが、以前松本が作成したチュートリアル上で、類似の実装を取り扱っているので、文章で確認したい方ははそちらもご参照ください。
+https://github.com/queq1890/fe-new-grad-training
