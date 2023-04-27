@@ -1159,7 +1159,9 @@ module.exports = function (webpackEnv) {
 
 - 複雑な Webpack の config を書かなくとも、zero config で実行環境を作れるようにする動き
   - React.js だと Next.js など
+- Internet Explorer をサポートする必要がなくなったので、古いブラウザをサポートするためだけに Webpack を採用しなくても良くなった
 - build の時間を短縮したい
   - :thinking_face: bundler は JavaScript で実装されていなくても良いのでは？
   - rust / go 製の build tool の登場
   - 例: esbuild / swc
+  - Next.js を採用するか、内部的に esbuild を利用している Vite で環境を作るのか、の 2 択になることが多い
