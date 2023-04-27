@@ -86,7 +86,7 @@ const Form = () => {
     setKeyword(event.target.value);
   };
 
-  const onSubmit = async (event) => {
+  const onClick = async (event) => {
     event.preventDefault();
 
     const response = await fetch(`path/to/api`, {
